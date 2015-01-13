@@ -17,9 +17,6 @@
         </c:forEach>
     </c:if>
 </c:if>
-		<form:form method="DELETE" action="/users/${user.getId()}">
-       		<p><input type="submit" value="Delete"/></p>
-    	</form:form>
 
 </body>
 </html>

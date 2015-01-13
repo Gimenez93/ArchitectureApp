@@ -14,4 +14,6 @@ public interface UserGreetingsService {
     Greeting updateGreetingFromUser(Greeting updateGreeting, Long greetingId);
 
     void removeGreetingFromUser(Long greetingId);
+
+	void removeUser(Long id);
 }
