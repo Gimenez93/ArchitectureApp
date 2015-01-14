@@ -24,6 +24,9 @@ public class User {
 
     @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Greeting> greetings = new ArrayList<>();
+    
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Serie> series = new ArrayList<>();
 
     public User() { }
 
@@ -52,5 +55,17 @@ public class User {
 
     public void removeGreeting(Greeting greeting) {
         greetings.remove(greeting);
+    }
+    
+    public List<Serie> getSeries() {
+        return series;
+    }
+
+    public void addSerie(Serie newSerie) {
+        series.add(newSerie);
+    }
+
+    public void removeSerie(Serie serie) {
+        series.remove(serie);
     }
 }

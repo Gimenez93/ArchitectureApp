@@ -78,7 +78,8 @@ public class UserGreetingsServiceImpl implements UserGreetingsService {
 	public void removeUser(Long id) {
 		User u = userRepository.findOne(id);
 		for (Greeting g : u.getGreetings()){
-			removeGreetingFromUser(g.getId());
+			u.removeGreeting(g);
+			greetingRepository.delete(g);
 		}
 		userRepository.delete(u);
 	}
