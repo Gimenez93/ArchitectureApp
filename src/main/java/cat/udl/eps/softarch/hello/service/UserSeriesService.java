@@ -8,4 +8,6 @@ public interface UserSeriesService {
     Serie updateSerie(Serie updateSerie, Long serieId);
 
 	void removeSerie(Long id);
+
+	void initializeRepository();
 }

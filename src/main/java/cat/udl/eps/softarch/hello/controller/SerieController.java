@@ -36,6 +36,19 @@ public class SerieController {
     @Autowired UserGreetingsService userGreetingsService;
     @Autowired UserSeriesService userSeriesService;
     
+ // INITILIZE REPOSITORY
+    @RequestMapping(value= "/initialize",method = RequestMethod.GET)
+    @ResponseBody
+    public void initialize(){
+    	logger.info("Initializing repository...");
+        userSeriesService.initializeRepository();
+    }
+    @RequestMapping(value= "/initialize",method = RequestMethod.GET, produces = "text/html")
+    public ModelAndView listHTML() {
+    	userSeriesService.initializeRepository();
+        return new ModelAndView("series", "series", list(0, 50));
+    }
+    
  // LIST
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
@@ -121,7 +134,7 @@ public class SerieController {
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable("id") Long id) {
-        logger.info("Deleting serie number {}", id);
+        logger.info("Deleting serie number {}", id);																																	
         Preconditions.checkNotNull(serieRepository.findOne(id), "Serie with id %s not found", id);
         userSeriesService.removeSerie(id);
     }
