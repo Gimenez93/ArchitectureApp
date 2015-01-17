@@ -9,6 +9,7 @@ import cat.udl.eps.softarch.hello.model.Serie;
 
 public interface SerieRepository extends PagingAndSortingRepository<Serie, Long> {
 	
-	List<Serie> findByTitleContaining(@Param("title") String title);
+	Serie findByTitle(@Param("title") String title);
+	
 
 }

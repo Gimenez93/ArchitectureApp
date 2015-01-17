@@ -12,6 +12,6 @@
     </c:if>
     </ul>
     <p><a href="series/serieForm">Add</a></p>
-    <p><a href="series/initialize">Initialize repository</a></p>
+<!--     <p><a href="series/initialize">Initialize repository</a></p> -->
 </body>
 </html>

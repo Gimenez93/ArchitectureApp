@@ -58,6 +58,16 @@
         	<scope>provided</scope>
     	</dependency>
 
+		<dependency>
+	        <groupId>ch.qos.logback</groupId>
+	        <artifactId>logback-classic</artifactId>
+	        <version>1.1.2</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>net.sf.saxon</groupId>
+	        <artifactId>Saxon-HE</artifactId>
+	        <version>9.4</version>
+	    </dependency>
         <!-- Persistence -->
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>

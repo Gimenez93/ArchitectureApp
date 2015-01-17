@@ -8,17 +8,11 @@
 <body>
 
 
-<form:form method="GET" action="/search?=${action}">
-    <table>
-        <tr>
-            <td><form:label path="title">Titulo: </form:label></td>
-            <td><form:input path="title"/> <i><form:errors path="title"></form:errors></i></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit" /></td>
-        </tr>
-    </table>
-</form:form>
-
+<form action="/search" method="post">
+Title:<br>
+<input type="text" name="title"><br>
+<br><br>
+<input type="submit" value="Submit">
+</form>
 </body>
 </html>

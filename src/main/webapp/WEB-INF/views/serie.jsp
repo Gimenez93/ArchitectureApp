@@ -8,7 +8,7 @@
 
 <c:if test="${not empty serie}">
     <h2>Serie number ${serie.getId()}</h2>
-    <p>Message: ${fn:escapeXml(serie.getTitle())} (<a href="/series/${serie.getId()}/form">edit</a>)</p>
+    <p>Message: ${fn:escapeXml(serie.getTitle())}</p>
     <p>Title: ${serie.getTitle()}</p>
 
     <form:form method="DELETE" action="/series/${serie.getId()}">

@@ -3,6 +3,7 @@ package cat.udl.eps.softarch.hello.service;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.client.Client;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus.Series;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -24,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import cat.udl.eps.softarch.hello.model.Serie;
 import cat.udl.eps.softarch.hello.repository.SerieRepository;
 import cat.udl.eps.softarch.hello.repository.UserRepository;
+import cat.udl.eps.softarch.hello.utils.XQueryHelper.ShowDTO;
 
 @Service
 public class UserSeriesServiceImpl implements UserSeriesService{
@@ -115,5 +118,24 @@ public class UserSeriesServiceImpl implements UserSeriesService{
 		  .request(MediaType.APPLICATION_ATOM_XML_TYPE)
 		  .get();
 		logger.error(response.readEntity(String.class));
+	}
+
+	@Transactional
+	@Override
+	public void addSerie(ShowDTO show) {
+		Serie s = serieRepository.findByTitle(show.getTitle());
+		if(s==null){
+			s = new Serie(show.getTitle());
+			s.setAirday(show.getAirday());
+			s.setCountry(show.getCountry());
+			s.setGenre(show.getGenre());
+			s.setLink(show.getLink());
+			s.setSeasons(Integer.parseInt(show.getSeasons()));
+			s.setStatus(show.getStatus());
+			serieRepository.save(s);
+		}
+		else{
+			logger.error("Serie already introduced! :D");
+		}
 	}
 }
