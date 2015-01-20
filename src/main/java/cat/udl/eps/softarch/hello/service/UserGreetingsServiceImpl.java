@@ -10,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import cat.udl.eps.softarch.hello.model.Greeting;
+import cat.udl.eps.softarch.hello.model.Serie;
 import cat.udl.eps.softarch.hello.model.User;
 import cat.udl.eps.softarch.hello.repository.GreetingRepository;
+import cat.udl.eps.softarch.hello.repository.SerieRepository;
 import cat.udl.eps.softarch.hello.repository.UserRepository;
+import cat.udl.eps.softarch.hello.utils.XQueryHelper.ShowDTO;
 
 /**
  * Created by http://rhizomik.net/~roberto/
@@ -25,7 +28,21 @@ public class UserGreetingsServiceImpl implements UserGreetingsService {
     GreetingRepository greetingRepository;
     @Autowired
     UserRepository     userRepository;
+    @Autowired
+    SerieRepository serieRepository;
 
+    @Transactional
+    @Override
+    public User addUser(String username){
+    	User u = userRepository.findUserByEmail(username);
+    	if(u==null){
+    		String mail = username.substring(0, username.indexOf('@'));
+    		u = new User(mail,username );
+    	}
+    	userRepository.save(u);
+    	return u;
+    }
+    
     @Transactional(readOnly = true)
     @Override
     public User getUserAndGreetings(Long userId) {
@@ -82,5 +99,13 @@ public class UserGreetingsServiceImpl implements UserGreetingsService {
 			greetingRepository.delete(g);
 		}
 		userRepository.delete(u);
+	}
+
+    @Transactional
+	@Override
+	public void addSerieToUser(User u, ShowDTO show) {
+		User us = userRepository.findUserByUsername(u.getUsername());
+		us.addSerie(serieRepository.findByTitle(show.getTitle()));
+		userRepository.save(us);
 	}
 }

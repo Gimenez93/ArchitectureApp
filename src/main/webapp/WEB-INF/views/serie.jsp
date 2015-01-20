@@ -8,12 +8,14 @@
 
 <c:if test="${not empty serie}">
     <h2>Serie number ${serie.getId()}</h2>
-    <p>Message: ${fn:escapeXml(serie.getTitle())}</p>
-    <p>Title: ${serie.getTitle()}</p>
+    <p>Title: ${fn:escapeXml(serie.getTitle())}</p>
+    <p>Country: ${fn:escapeXml(serie.getCountry())}</p>
+    <p>Seasons: ${fn:escapeXml(serie.getSeasons())}</p>
+    <p>Airday: ${fn:escapeXml(serie.getAirday())}</p>
+    <p>Link: ${fn:escapeXml(serie.getLink())}</p>
+    <p>Status: ${serie.getStatus()}</p>
+    <p>Genre: ${serie.getGenre()}</p>
 
-    <form:form method="DELETE" action="/series/${serie.getId()}">
-        <p><input type="submit" value="Delete"/></p>
-    </form:form>
 </c:if>
 
 </body>

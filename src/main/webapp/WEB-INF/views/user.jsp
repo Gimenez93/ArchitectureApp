@@ -10,10 +10,10 @@
     <h2>User ${user.getUsername()}</h2>
     <p>E-mail: ${user.getEmail()}</p>
 
-    <c:if test="${not empty user.getGreetings()}">
-        <h3>User Greetings</h3>
-        <c:forEach var="greeting" items="${user.getGreetings()}">
-            <li><a href="/greetings/${greeting.getId()}">${greeting.getId()}</a>: ${fn:escapeXml(greeting.getContent())}</li>
+    <c:if test="${not empty user.getSeries()}">
+        <h3>User Series</h3>
+        <c:forEach var="serie" items="${user.getSeries()}">
+            <li><a href="/series/${serie.getId()}">${serie.getId()}</a>: ${fn:escapeXml(serie.getTitle())}</li>
         </c:forEach>
     </c:if>
 </c:if>
